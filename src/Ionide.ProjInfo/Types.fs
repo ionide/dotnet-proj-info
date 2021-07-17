@@ -67,7 +67,7 @@ module Types =
           FullPath: string
           Link: string option }
 
-    type ToolsPath = internal ToolsPath of string
+    type ToolsPath = ToolsPath of string
 
 
     type GetProjectOptionsErrors =
@@ -93,15 +93,15 @@ module Types =
 
     [<RequireQualifiedAccess>]
     type WorkspaceProjectState =
-        | Loading of string
+        | Loading of projectFilePath: string
         | Loaded of loadedProject: ProjectOptions * knownProjects: ProjectOptions list * fromCache: bool
-        | Failed of string * GetProjectOptionsErrors
+        | Failed of projectFilePath: string * errors: GetProjectOptionsErrors
 
         member x.ProjFile =
             match x with
-            | Loading proj -> proj
-            | Loaded (lp, _, _) -> lp.ProjectFileName
+            | Loading proj
             | Failed (proj, _) -> proj
+            | Loaded (lp, _, _) -> lp.ProjectFileName
 
         member x.DebugPrint =
             match x with

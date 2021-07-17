@@ -3,7 +3,7 @@ source https://api.nuget.org/v3/index.json
 source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
 
 storage: none
-framework: net5.0
+framework: net5.0, net6.0
 
 nuget FSharp.Core
 nuget FSharp.Compiler.Service
@@ -22,9 +22,10 @@ nuget Microsoft.Build copy_local: false
 nuget Microsoft.Build.Framework copy_local: false
 nuget Microsoft.Build.Utilities.Core copy_local: false
 nuget Microsoft.Build.Tasks.Core copy_local: false
-nuget Microsoft.Build.Locator
 nuget Newtonsoft.Json
 nuget Fsharp.Control.Reactive
+nuget SemanticVersioning
+nuget Buildalyzer
 
 github TheAngryByrd/FsLibLog src/FsLibLog/FsLibLog.fs
 
